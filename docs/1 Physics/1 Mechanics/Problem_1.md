@@ -59,21 +59,21 @@ $$
 y(t) = v_0 \sin\theta \cdot t - \frac{1}{2} g t^2
 $$
 
-These equations describe the projectile’s position parametrically. The trajectory is a parabola, as $$y(t)$$ is quadratic in $$t$$, while $$x(t)$$ is linear.
+These equations describe the projectile’s position parametrically. The trajectory is a parabola, as $y(t)$ is quadratic in $t$, while $x(t)$ is linear.
 
 ### Family of Solutions
 The solutions depend on free parameters:
-- $$v_0$$: Initial velocity
-- $$\theta$$: Angle of projection
-- $$g$$: Gravitational acceleration
-- Initial height $$h$$ (if $$y_0 \neq 0$$)
+- $v_0$: Initial velocity
+- $\theta$: Angle of projection
+- $g$: Gravitational acceleration
+- Initial height $$h$$ (if $y_0 \neq 0$)
 
-Varying these parameters generates a family of trajectories, from flat, fast arcs (low $$\theta$$, high $$v_0$$) to steep, short parabolas (high $$\theta$$, low $$v_0$$).
+Varying these parameters generates a family of trajectories, from flat, fast arcs (low $\theta$, high $v_0$) to steep, short parabolas (high $\theta$, low $v_0$).
 
 ## 2. Analysis of the Range
 
 ### Deriving the Range
-The range $$R$$ is the horizontal distance traveled when the projectile returns to $$y = 0$$. Set $$y(t) = 0$$:
+The range $R$ is the horizontal distance traveled when the projectile returns to $y = 0$. Set $y(t) = 0$:
 
 $$
 v_0 \sin\theta \cdot t - \frac{1}{2} g t^2 = 0
@@ -104,30 +104,30 @@ R = \frac{v_0^2 \sin 2\theta}{g}
 $$
 
 ### Dependence on Angle
-- **Maximum Range**: $$R$$ is maximized when $$\sin 2\theta = 1$$, i.e., $$2\theta = 90^\circ$$, so $$\theta = 45^\circ$$. Then:
+- **Maximum Range**: $R$ is maximized when $\sin 2\theta = 1$, i.e., $2\theta = 90^\circ$, so $\theta = 45^\circ$. Then:
   
 $$
   R_{\text{max}} = \frac{v_0^2}{g}
 $$
 
-- **Symmetry**: $$R(\theta) = R(90^\circ - \theta)$$, e.g., ranges at $$30^\circ$$ and $$60^\circ$$ are equal, due to $$\sin(180^\circ - 2\theta) = \sin 2\theta$$.
-- **Limits**: At $$\theta = 0^\circ$$ or $$90^\circ$$, $$\sin 2\theta = 0$$, so $$R = 0$$.
+- **Symmetry**: $R(\theta) = R(90^\circ - \theta)$, e.g., ranges at $30^\circ$ and $60^\circ$ are equal, due to $\sin(180^\circ - 2\theta) = \sin 2\theta$.
+- **Limits**: At $\theta = 0^\circ$ or $90^\circ$, $\sin 2\theta = 0$, so $R = 0$.
 
 ### Other Parameters
-- **Initial Velocity ($$v_0$$)**: $$R \propto v_0^2$$, a quadratic relationship. Doubling $$v_0$$ quadruples the range.
-- **Gravity ($$g$$)**: $$R \propto 1/g$$. On a planet with lower $$g$$ (e.g., the Moon), the range increases.
+- **Initial Velocity ($v_0$)**: $R \propto v_0^2$, a quadratic relationship. Doubling $v_0$ quadruples the range.
+- **Gravity ($g$)**: $R \propto 1/g$. On a planet with lower $g$ (e.g., the Moon), the range increases.
 
 ## 3. Practical Applications
 
-- **Sports**: In soccer or golf, athletes adjust $$\theta$$ and $$v_0$$ for desired distance, though air resistance and spin complicate the ideal $$45^\circ$$.
-- **Engineering**: Artillery and rocket launches optimize $$\theta$$ based on target distance and terrain.
-- **Uneven Terrain**: If launched from height $$h$$, the range equation becomes:
+- **Sports**: In soccer or golf, athletes adjust $\theta$ and $v_0$ for desired distance, though air resistance and spin complicate the ideal $45^\circ$.
+- **Engineering**: Artillery and rocket launches optimize $\theta$ based on target distance and terrain.
+- **Uneven Terrain**: If launched from height $h$, the range equation becomes:
 
 $$
   R = \frac{v_0^2}{g} \left( \sin 2\theta + \frac{2 h g}{v_0^2} \cos^2\theta \right)^{1/2}
 $$
 
-- **Air Resistance**: Introduces a drag force proportional to velocity squared, reducing range and shifting the optimal angle below $$45^\circ$$.
+- **Air Resistance**: Introduces a drag force proportional to velocity squared, reducing range and shifting the optimal angle below $45^\circ$.
 
 ## 4. Implementation
 
@@ -170,19 +170,19 @@ for v0 in v0_values:
 ```
 
 ### Output Explanation
-- The script plots $$R$$ versus $$\theta$$ for $$v_0 = 10, 20, 30 \, \text{m/s}$$.
-- Peaks occur at $$45^\circ$$, with $$R_{\text{max}} = v_0^2 / g$$.
-- Higher $$v_0$$ shifts the curve upward quadratically.
+- The script plots $R$ versus $\theta$ for $v_0 = 10, 20, 30 \, \text{m/s}$.
+- Peaks occur at $45^\circ$, with $R_{\text{max}} = v_0^2 / g$.
+- Higher $v_0$ shifts the curve upward quadratically.
 
 ## Discussion
 
 ### Limitations
-- **Idealization**: Assumes no air resistance, flat terrain, and constant $$g$$.
-- **Realism**: Drag reduces range and optimal $$\theta$$; wind adds lateral deviation.
+- **Idealization**: Assumes no air resistance, flat terrain, and constant $g$.
+- **Realism**: Drag reduces range and optimal $\theta$; wind adds lateral deviation.
 
 ### Extensions
-- **Drag**: Model with $$F_d = -k v^2$$, solved numerically (e.g., Runge-Kutta).
-- **Terrain**: Adjust $$y(t) = 0$$ to $$y(t) = f(x)$$.
+- **Drag**: Model with $F_d = -k v^2$, solved numerically (e.g., Runge-Kutta).
+- **Terrain**: Adjust $y(t) = 0$ to $y(t) = f(x)$.
 - **3D Motion**: Include crosswinds or spin (Magnus effect).
 
 This model, while simple, bridges theory and application, from classroom physics to real-world engineering challenges.
