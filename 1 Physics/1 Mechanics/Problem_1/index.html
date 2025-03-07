@@ -216,17 +216,17 @@ x(t) = v_0 \cos\theta \cdot t
 <div class="arithmatex">\[
 y(t) = v_0 \sin\theta \cdot t - \frac{1}{2} g t^2
 \]</div>
-<p>These equations describe the projectile’s position parametrically. The trajectory is a parabola, as <span class="arithmatex">\(<span class="arithmatex">\(y(t)\)</span>\)</span> is quadratic in <span class="arithmatex">\(<span class="arithmatex">\(t\)</span>\)</span>, while <span class="arithmatex">\(<span class="arithmatex">\(x(t)\)</span>\)</span> is linear.</p>
+<p>These equations describe the projectile’s position parametrically. The trajectory is a parabola, as <span class="arithmatex">\(y(t)\)</span> is quadratic in <span class="arithmatex">\(t\)</span>, while <span class="arithmatex">\(x(t)\)</span> is linear.</p>
 <h3 id="family-of-solutions">Family of Solutions</h3>
 <p>The solutions depend on free parameters:
-- <span class="arithmatex">\(<span class="arithmatex">\(v_0\)</span>\)</span>: Initial velocity
-- <span class="arithmatex">\(<span class="arithmatex">\(\theta\)</span>\)</span>: Angle of projection
-- <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span>: Gravitational acceleration
-- Initial height <span class="arithmatex">\(<span class="arithmatex">\(h\)</span>\)</span> (if <span class="arithmatex">\(<span class="arithmatex">\(y_0 \neq 0\)</span>\)</span>)</p>
-<p>Varying these parameters generates a family of trajectories, from flat, fast arcs (low <span class="arithmatex">\(<span class="arithmatex">\(\theta\)</span>\)</span>, high <span class="arithmatex">\(<span class="arithmatex">\(v_0\)</span>\)</span>) to steep, short parabolas (high <span class="arithmatex">\(<span class="arithmatex">\(\theta\)</span>\)</span>, low <span class="arithmatex">\(<span class="arithmatex">\(v_0\)</span>\)</span>).</p>
+- <span class="arithmatex">\(v_0\)</span>: Initial velocity
+- <span class="arithmatex">\(\theta\)</span>: Angle of projection
+- <span class="arithmatex">\(g\)</span>: Gravitational acceleration
+- Initial height <span class="arithmatex">\(<span class="arithmatex">\(h\)</span>\)</span> (if <span class="arithmatex">\(y_0 \neq 0\)</span>)</p>
+<p>Varying these parameters generates a family of trajectories, from flat, fast arcs (low <span class="arithmatex">\(\theta\)</span>, high <span class="arithmatex">\(v_0\)</span>) to steep, short parabolas (high <span class="arithmatex">\(\theta\)</span>, low <span class="arithmatex">\(v_0\)</span>).</p>
 <h2 id="2-analysis-of-the-range">2. Analysis of the Range</h2>
 <h3 id="deriving-the-range">Deriving the Range</h3>
-<p>The range <span class="arithmatex">\(<span class="arithmatex">\(R\)</span>\)</span> is the horizontal distance traveled when the projectile returns to <span class="arithmatex">\(<span class="arithmatex">\(y = 0\)</span>\)</span>. Set <span class="arithmatex">\(<span class="arithmatex">\(y(t) = 0\)</span>\)</span>:</p>
+<p>The range <span class="arithmatex">\(R\)</span> is the horizontal distance traveled when the projectile returns to <span class="arithmatex">\(y = 0\)</span>. Set <span class="arithmatex">\(y(t) = 0\)</span>:</p>
 <div class="arithmatex">\[
 v_0 \sin\theta \cdot t - \frac{1}{2} g t^2 = 0
 \]</div>
@@ -248,31 +248,31 @@ R = \frac{v_0^2 \sin 2\theta}{g}
 \]</div>
 <h3 id="dependence-on-angle">Dependence on Angle</h3>
 <ul>
-<li><strong>Maximum Range</strong>: <span class="arithmatex">\(<span class="arithmatex">\(R\)</span>\)</span> is maximized when <span class="arithmatex">\(<span class="arithmatex">\(\sin 2\theta = 1\)</span>\)</span>, i.e., <span class="arithmatex">\(<span class="arithmatex">\(2\theta = 90^\circ\)</span>\)</span>, so <span class="arithmatex">\(<span class="arithmatex">\(\theta = 45^\circ\)</span>\)</span>. Then:</li>
+<li><strong>Maximum Range</strong>: <span class="arithmatex">\(R\)</span> is maximized when <span class="arithmatex">\(\sin 2\theta = 1\)</span>, i.e., <span class="arithmatex">\(2\theta = 90^\circ\)</span>, so <span class="arithmatex">\(\theta = 45^\circ\)</span>. Then:</li>
 </ul>
 <div class="arithmatex">\[
   R_{\text{max}} = \frac{v_0^2}{g}
 \]</div>
 <ul>
-<li><strong>Symmetry</strong>: <span class="arithmatex">\(<span class="arithmatex">\(R(\theta) = R(90^\circ - \theta)\)</span>\)</span>, e.g., ranges at <span class="arithmatex">\(<span class="arithmatex">\(30^\circ\)</span>\)</span> and <span class="arithmatex">\(<span class="arithmatex">\(60^\circ\)</span>\)</span> are equal, due to <span class="arithmatex">\(<span class="arithmatex">\(\sin(180^\circ - 2\theta) = \sin 2\theta\)</span>\)</span>.</li>
-<li><strong>Limits</strong>: At <span class="arithmatex">\(<span class="arithmatex">\(\theta = 0^\circ\)</span>\)</span> or <span class="arithmatex">\(<span class="arithmatex">\(90^\circ\)</span>\)</span>, <span class="arithmatex">\(<span class="arithmatex">\(\sin 2\theta = 0\)</span>\)</span>, so <span class="arithmatex">\(<span class="arithmatex">\(R = 0\)</span>\)</span>.</li>
+<li><strong>Symmetry</strong>: <span class="arithmatex">\(R(\theta) = R(90^\circ - \theta)\)</span>, e.g., ranges at <span class="arithmatex">\(30^\circ\)</span> and <span class="arithmatex">\(60^\circ\)</span> are equal, due to <span class="arithmatex">\(\sin(180^\circ - 2\theta) = \sin 2\theta\)</span>.</li>
+<li><strong>Limits</strong>: At <span class="arithmatex">\(\theta = 0^\circ\)</span> or <span class="arithmatex">\(90^\circ\)</span>, <span class="arithmatex">\(\sin 2\theta = 0\)</span>, so <span class="arithmatex">\(R = 0\)</span>.</li>
 </ul>
 <h3 id="other-parameters">Other Parameters</h3>
 <ul>
-<li><strong>Initial Velocity (<span class="arithmatex">(<span class="arithmatex">\(v_0\)</span>\)</span>)</strong>: <span class="arithmatex">\(<span class="arithmatex">\(R \propto v_0^2\)</span>\)</span>, a quadratic relationship. Doubling <span class="arithmatex">\(<span class="arithmatex">\(v_0\)</span>\)</span> quadruples the range.</li>
-<li><strong>Gravity (<span class="arithmatex">(<span class="arithmatex">\(g\)</span>\)</span>)</strong>: <span class="arithmatex">\(<span class="arithmatex">\(R \propto 1/g\)</span>\)</span>. On a planet with lower <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> (e.g., the Moon), the range increases.</li>
+<li><strong>Initial Velocity (<span class="arithmatex">\(v_0\)</span>)</strong>: <span class="arithmatex">\(R \propto v_0^2\)</span>, a quadratic relationship. Doubling <span class="arithmatex">\(v_0\)</span> quadruples the range.</li>
+<li><strong>Gravity (<span class="arithmatex">\(g\)</span>)</strong>: <span class="arithmatex">\(R \propto 1/g\)</span>. On a planet with lower <span class="arithmatex">\(g\)</span> (e.g., the Moon), the range increases.</li>
 </ul>
 <h2 id="3-practical-applications">3. Practical Applications</h2>
 <ul>
-<li><strong>Sports</strong>: In soccer or golf, athletes adjust <span class="arithmatex">\(<span class="arithmatex">\(\theta\)</span>\)</span> and <span class="arithmatex">\(<span class="arithmatex">\(v_0\)</span>\)</span> for desired distance, though air resistance and spin complicate the ideal <span class="arithmatex">\(<span class="arithmatex">\(45^\circ\)</span>\)</span>.</li>
-<li><strong>Engineering</strong>: Artillery and rocket launches optimize <span class="arithmatex">\(<span class="arithmatex">\(\theta\)</span>\)</span> based on target distance and terrain.</li>
-<li><strong>Uneven Terrain</strong>: If launched from height <span class="arithmatex">\(<span class="arithmatex">\(h\)</span>\)</span>, the range equation becomes:</li>
+<li><strong>Sports</strong>: In soccer or golf, athletes adjust <span class="arithmatex">\(\theta\)</span> and <span class="arithmatex">\(v_0\)</span> for desired distance, though air resistance and spin complicate the ideal <span class="arithmatex">\(45^\circ\)</span>.</li>
+<li><strong>Engineering</strong>: Artillery and rocket launches optimize <span class="arithmatex">\(\theta\)</span> based on target distance and terrain.</li>
+<li><strong>Uneven Terrain</strong>: If launched from height <span class="arithmatex">\(h\)</span>, the range equation becomes:</li>
 </ul>
 <div class="arithmatex">\[
   R = \frac{v_0^2}{g} \left( \sin 2\theta + \frac{2 h g}{v_0^2} \cos^2\theta \right)^{1/2}
 \]</div>
 <ul>
-<li><strong>Air Resistance</strong>: Introduces a drag force proportional to velocity squared, reducing range and shifting the optimal angle below <span class="arithmatex">\(<span class="arithmatex">\(45^\circ\)</span>\)</span>.</li>
+<li><strong>Air Resistance</strong>: Introduces a drag force proportional to velocity squared, reducing range and shifting the optimal angle below <span class="arithmatex">\(45^\circ\)</span>.</li>
 </ul>
 <h2 id="4-implementation">4. Implementation</h2>
 <p>Here’s a Python script to simulate and visualize the range versus angle:</p>
@@ -312,20 +312,20 @@ for v0 in v0_values:
 </code></pre>
 <h3 id="output-explanation">Output Explanation</h3>
 <ul>
-<li>The script plots <span class="arithmatex">\(<span class="arithmatex">\(R\)</span>\)</span> versus <span class="arithmatex">\(<span class="arithmatex">\(\theta\)</span>\)</span> for <span class="arithmatex">\(<span class="arithmatex">\(v_0 = 10, 20, 30 \, \text{m/s}\)</span>\)</span>.</li>
-<li>Peaks occur at <span class="arithmatex">\(<span class="arithmatex">\(45^\circ\)</span>\)</span>, with <span class="arithmatex">\(<span class="arithmatex">\(R_{\text{max}} = v_0^2 / g\)</span>\)</span>.</li>
-<li>Higher <span class="arithmatex">\(<span class="arithmatex">\(v_0\)</span>\)</span> shifts the curve upward quadratically.</li>
+<li>The script plots <span class="arithmatex">\(R\)</span> versus <span class="arithmatex">\(\theta\)</span> for <span class="arithmatex">\(v_0 = 10, 20, 30 \, \text{m/s}\)</span>.</li>
+<li>Peaks occur at <span class="arithmatex">\(45^\circ\)</span>, with <span class="arithmatex">\(R_{\text{max}} = v_0^2 / g\)</span>.</li>
+<li>Higher <span class="arithmatex">\(v_0\)</span> shifts the curve upward quadratically.</li>
 </ul>
 <h2 id="discussion">Discussion</h2>
 <h3 id="limitations">Limitations</h3>
 <ul>
-<li><strong>Idealization</strong>: Assumes no air resistance, flat terrain, and constant <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span>.</li>
-<li><strong>Realism</strong>: Drag reduces range and optimal <span class="arithmatex">\(<span class="arithmatex">\(\theta\)</span>\)</span>; wind adds lateral deviation.</li>
+<li><strong>Idealization</strong>: Assumes no air resistance, flat terrain, and constant <span class="arithmatex">\(g\)</span>.</li>
+<li><strong>Realism</strong>: Drag reduces range and optimal <span class="arithmatex">\(\theta\)</span>; wind adds lateral deviation.</li>
 </ul>
 <h3 id="extensions">Extensions</h3>
 <ul>
-<li><strong>Drag</strong>: Model with <span class="arithmatex">\(<span class="arithmatex">\(F_d = -k v^2\)</span>\)</span>, solved numerically (e.g., Runge-Kutta).</li>
-<li><strong>Terrain</strong>: Adjust <span class="arithmatex">\(<span class="arithmatex">\(y(t) = 0\)</span>\)</span> to <span class="arithmatex">\(<span class="arithmatex">\(y(t) = f(x)\)</span>\)</span>.</li>
+<li><strong>Drag</strong>: Model with <span class="arithmatex">\(F_d = -k v^2\)</span>, solved numerically (e.g., Runge-Kutta).</li>
+<li><strong>Terrain</strong>: Adjust <span class="arithmatex">\(y(t) = 0\)</span> to <span class="arithmatex">\(y(t) = f(x)\)</span>.</li>
 <li><strong>3D Motion</strong>: Include crosswinds or spin (Magnus effect).</li>
 </ul>
 <p>This model, while simple, bridges theory and application, from classroom physics to real-world engineering challenges.</p>
