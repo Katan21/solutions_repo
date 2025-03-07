@@ -9,12 +9,13 @@
 
 Projectile motion is a classic problem in physics governed by Newton’s laws under constant gravitational acceleration, assuming no air resistance for simplicity. Let’s start with the fundamentals.
 
-Consider a projectile launched from the origin $$(x_0, y_0) = (0, 0)$$ with an initial velocity $$v_0$$ at an angle $$\theta$$ above the horizontal. The acceleration is solely due to gravity, acting downward with magnitude $$g$$ (typically $$9.8 \, \text{m/s}^2$$ on Earth). We can break this into components:
+Consider a projectile launched from the origin $(x_0, y_0) = (0, 0)$ with an initial velocity $v_0$ at an angle $\theta$ above the horizontal. The acceleration is solely due to gravity, acting downward with magnitude $g$ (typically $9.8 \, \text{m/s}^2$ on Earth). We can break this into components:
 
-- **Horizontal motion**: No acceleration ($$a_x = 0$$).
-- **Vertical motion**: Acceleration $$a_y = -g$$.
+- **Horizontal motion**: No acceleration ($a_x = 0$).
+- **Vertical motion**: Acceleration $a_y = -g$.
 
 The initial velocity components are:
+
 - $$v_{0x} = v_0 \cos\theta$$
 - $$v_{0y} = v_0 \sin\theta$$
 
