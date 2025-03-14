@@ -43,9 +43,14 @@ $$
 
 This is solvable analytically:
 
-- **Homogeneous solution:** $\theta_h(t) = e^{-\frac{\gamma}{2} t} [A \cos(\omega_d t) + B \sin(\omega_d t)]$, where $\omega_d = \sqrt{\omega_0^2 - (\frac{\gamma}{2})^2}$ (damped frequency).
+- **Homogeneous solution:** 
 
-- **Particular solution:** $\theta_p(t) = C \cos(\omega t - \phi)$, with amplitude $C = \frac{f}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\gamma \omega)^2}}$ and phase $\phi = \tan^{-1}\left(\frac{\gamma \omega}{\omega_0^2 - \omega^2}\right)$.
+$\theta_h(t) = e^{-\frac{\gamma}{2} t} [A \cos(\omega_d t) + B \sin(\omega_d t)]$, where $\omega_d = \sqrt{\omega_0^2 - (\frac{\gamma}{2})^2}$ (damped frequency).
+
+
+- **Particular solution:** 
+
+$\theta_p(t) = C \cos(\omega t - \phi)$, with amplitude $C = \frac{f}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\gamma \omega)^2}}$ and phase $\phi = \tan^{-1}\left(\frac{\gamma \omega}{\omega_0^2 - \omega^2}\right)$.
 
 ### Resonance
 
