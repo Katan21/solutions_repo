@@ -327,22 +327,6 @@ plt.xlabel('θ (rad)')
 plt.ylabel('dθ/dt (rad/s)')
 plt.title('Phase Portrait')
 
-# Poincaré section (at t = 2π/ω multiples)
-poincare_t = t[::int(2 * np.pi / (omega * (t[1] - t[0])))]
-poincare_theta = []
-poincare_theta_dot = []
-for ti in poincare_t:
-    idx = np.argmin(np.abs(t - ti))
-    poincare_theta.append(theta[idx])
-    poincare_theta_dot.append(theta_dot[idx])
-plt.subplot(2, 2, 3)
-plt.scatter(poincare_theta, poincare_theta_dot, s=5, c='g')
-plt.xlabel('θ (rad)')
-plt.ylabel('dθ/dt (rad/s)')
-plt.title('Poincaré Section')
-
-plt.tight_layout()
-plt.show()
 
 # Vary parameters for resonance and chaos
 f_values = [0.5, 1.2, 1.5]  # Explore different amplitudes
