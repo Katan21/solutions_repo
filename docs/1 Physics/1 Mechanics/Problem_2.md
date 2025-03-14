@@ -58,6 +58,8 @@ The nonlinear term $\sin\theta$ (absent in the small-angle case) introduces comp
 - **Energy Harvesting:** Oscillating systems (e.g., piezoelectric devices) convert motion to electricity, optimized near resonance.
 - **Suspension Bridges:** External forces (wind) can drive oscillations, requiring damping to prevent collapse (e.g., Tacoma Narrows).
 - **Circuits:** Driven RLC circuits mirror this behavior, used in signal processing.
+- ![Alt Text](https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pendulum_animation.gif/220px-Pendulum_animation.gif)
+
 
 ## 4. Implementation
 
