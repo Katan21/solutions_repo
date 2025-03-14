@@ -162,7 +162,8 @@ for i, f in enumerate(f_values):
 plt.tight_layout()
 plt.show()
 ```
-
+![Alt Text](wawes.png)
+![Alt Text](wawes2.png)
 ### Output Explanation
 
 - **Time Series:** Shows $\theta(t)$—regular for small $f$, chaotic for large $f$.
