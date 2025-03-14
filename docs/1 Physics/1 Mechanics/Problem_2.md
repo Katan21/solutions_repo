@@ -7,20 +7,28 @@ The forced damped pendulum is governed by a second-order nonlinear differential 
 ### Governing Equation
 
 Consider a pendulum of length $l$ and mass $m$, with angle $\theta$ from the vertical:
+
 - **Restoring force:** Gravitational torque, $-\frac{mg}{l} \sin\theta$.
+
 - **Damping:** Proportional to angular velocity, $-b \dot{\theta}$ (where $b$ is the damping coefficient).
+
 - **External force:** A periodic driving torque, $F_0 \cos(\omega t)$, where $F_0$ is the amplitude and $\omega$ is the driving frequency.
 
 The equation of motion, from Newton’s second law for rotation ($I \ddot{\theta} = \sum \tau$), is:
+
 $$
 ml^2 \ddot{\theta} + b \dot{\theta} + mg \sin\theta = F_0 \cos(\omega t)
 $$
+
 Divide through by $ml^2$ and define:
 - $\omega_0 = \sqrt{\frac{g}{l}}$ (natural frequency),
+
 - $\gamma = \frac{b}{ml^2}$ (damping rate),
+
 - $f = \frac{F_0}{ml^2}$ (driving amplitude per unit inertia).
 
 The standard form becomes:
+
 $$
 \ddot{\theta} + \gamma \dot{\theta} + \omega_0^2 \sin\theta = f \cos(\omega t)
 $$
@@ -28,11 +36,15 @@ $$
 ### Small-Angle Approximation
 
 For small $\theta$, $\sin\theta \approx \theta$, simplifying the equation to a linear forced damped oscillator:
+
 $$
 \ddot{\theta} + \gamma \dot{\theta} + \omega_0^2 \theta = f \cos(\omega t)
 $$
+
 This is solvable analytically:
+
 - **Homogeneous solution:** $\theta_h(t) = e^{-\frac{\gamma}{2} t} [A \cos(\omega_d t) + B \sin(\omega_d t)]$, where $\omega_d = \sqrt{\omega_0^2 - (\frac{\gamma}{2})^2}$ (damped frequency).
+
 - **Particular solution:** $\theta_p(t) = C \cos(\omega t - \phi)$, with amplitude $C = \frac{f}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\gamma \omega)^2}}$ and phase $\phi = \tan^{-1}\left(\frac{\gamma \omega}{\omega_0^2 - \omega^2}\right)$.
 
 ### Resonance
@@ -50,7 +62,9 @@ Resonance occurs when $\omega \approx \omega_0$, maximizing $C$. For light dampi
 ### Transition to Chaos
 
 The nonlinear term $\sin\theta$ (absent in the small-angle case) introduces complexity:
+
 - **Periodic Motion:** At low $f$, the pendulum locks to the driving frequency.
+
 - **Chaos:** High $f$ or specific $\omega$ values lead to unpredictable, aperiodic motion, sensitive to initial conditions.
 
 ## 3. Practical Applications
@@ -59,6 +73,9 @@ The nonlinear term $\sin\theta$ (absent in the small-angle case) introduces comp
 - **Suspension Bridges:** External forces (wind) can drive oscillations, requiring damping to prevent collapse (e.g., Tacoma Narrows).
 - **Circuits:** Driven RLC circuits mirror this behavior, used in signal processing.
 - ![Alt Text](https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pendulum_animation.gif/220px-Pendulum_animation.gif)
+
+$$V=Velocity$$
+$$A=Acceleration$$
 
 
 ## 4. Implementation
@@ -148,9 +165,13 @@ plt.show()
 ### Output Explanation
 
 - **Time Series:** Shows $\theta(t)$—regular for small $f$, chaotic for large $f$.
+
 - **Phase Portrait:** A closed loop indicates periodic motion; scattered points suggest chaos.
+
 - **Poincaré Section:** Discrete points for periodic motion; a cloud for chaos.
+
 - **Parameter Variation:** Low $f$ (0.5) gives damped oscillations, higher $f$ (1.5) shows chaotic behavior.
+
 
 ## Deliverables
 
