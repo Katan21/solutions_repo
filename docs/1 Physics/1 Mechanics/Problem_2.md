@@ -74,8 +74,9 @@ The nonlinear term $\sin\theta$ (absent in the small-angle case) introduces comp
 - **Circuits:** Driven RLC circuits mirror this behavior, used in signal processing.
 - ![Alt Text](https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pendulum_animation.gif/220px-Pendulum_animation.gif)
 
-$$V=Velocity$$
-$$A=Acceleration$$
+$V=Velocity$
+
+$A=Acceleration$
 
 
 ## 4. Implementation
