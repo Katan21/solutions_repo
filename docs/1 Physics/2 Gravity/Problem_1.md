@@ -27,9 +27,11 @@ The relationship between the square of the orbital period and the cube of the or
 To derive Kepler’s Third Law for circular orbits, we start with Newton’s law of gravitation and the centripetal force required for circular motion.
 
 Newton’s law of gravitation states:
-$ F = \frac{G M m}{r^2} $
+
+$F = \frac{G M m}{r^2}$
 
 Where:
+
 - $ F $ is the gravitational force,
 - $ G $ is the gravitational constant,
 - $ M $ is the mass of the central body,
