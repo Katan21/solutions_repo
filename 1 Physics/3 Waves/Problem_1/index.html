@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Waves: Interference Patterns on a Water Surface - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Waves: Interference Patterns on a Water Surface";
         var mkdocs_page_input_path = "1 Physics/3 Waves/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,8 +64,46 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">3 Waves</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Waves: Interference Patterns on a Water Surface</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#problem-statement">Problem Statement</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#task">Task:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#key-concepts">Key Concepts</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#wave-equation">Wave Equation:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-follow">Steps to Follow</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-and-visualization">Simulation and Visualization</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-implementation">Python Implementation:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#results-and-discussion">Results and Discussion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#graphical-representation">Graphical Representation:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#key-observations">Key Observations:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#applications">Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +201,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">3 Waves</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Waves: Interference Patterns on a Water Surface</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +209,169 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="waves-interference-patterns-on-a-water-surface">Waves: Interference Patterns on a Water Surface</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="motivation">Motivation:</h3>
+<ul>
+<li><strong>Interference</strong> occurs when waves from different sources overlap, creating new patterns.</li>
+<li>On a water surface, ripples from different points meet, forming <strong>distinctive interference patterns</strong>.</li>
+<li>These patterns help us understand how waves combine, either <strong>reinforcing</strong> (constructive interference) or <strong>canceling out</strong> (destructive interference).</li>
+<li>Studying these patterns provides insights into wave behavior, phase relationships, and real-world applications like acoustics, optics, and oceanography.</li>
+</ul>
+<hr/>
+<h2 id="problem-statement">Problem Statement</h2>
+<h3 id="task">Task:</h3>
+<p>Analyze the interference patterns formed on a water surface due to the superposition of waves emitted from <strong>point sources placed at the vertices of a regular polygon</strong>.</p>
+<hr/>
+<h2 id="key-concepts">Key Concepts</h2>
+<h3 id="wave-equation">Wave Equation:</h3>
+<p>A circular wave on the water surface, emanating from a point source at <span class="arithmatex">\((x_0, y_0)\)</span>, is described by:</p>
+<div class="arithmatex">\[
+\eta(x,y,t) = \frac{A}{\sqrt{r}} \cdot \cos{(kr - \omega t + \phi)}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(\eta(x,y,t)\)</span>: Displacement of the water surface at point <span class="arithmatex">\((x,y)\)</span> and time <span class="arithmatex">\(t\)</span>.
+- <span class="arithmatex">\(A\)</span>: Amplitude of the wave.
+- <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>: Wave number, related to wavelength <span class="arithmatex">\(\lambda\)</span>.
+- <span class="arithmatex">\(\omega = 2\pi f\)</span>: Angular frequency, related to frequency <span class="arithmatex">\(f\)</span>.
+- <span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span>: Distance from the source to <span class="arithmatex">\((x,y)\)</span>.
+- <span class="arithmatex">\(\phi\)</span>: Initial phase.</p>
+<hr/>
+<h2 id="steps-to-follow">Steps to Follow</h2>
+<ol>
+<li><strong>Select a Regular Polygon</strong>:</li>
+<li>Choose a polygon (e.g., equilateral triangle, square, pentagon).</li>
+<li>
+<p>The number of sides (<span class="arithmatex">\(N\)</span>) determines the number of wave sources.</p>
+</li>
+<li>
+<p><strong>Position the Sources</strong>:</p>
+</li>
+<li>Place wave sources at the vertices of the polygon.</li>
+<li>
+<p>Example: For a square, place sources at <span class="arithmatex">\((r, r)\)</span>, <span class="arithmatex">\((-r, r)\)</span>, <span class="arithmatex">\((-r, -r)\)</span>, and <span class="arithmatex">\((r, -r)\)</span>.</p>
+</li>
+<li>
+<p><strong>Wave Equations</strong>:</p>
+</li>
+<li>
+<p>Write the wave equation for each source, considering its position <span class="arithmatex">\((x_0, y_0)\)</span>.</p>
+</li>
+<li>
+<p><strong>Superposition of Waves</strong>:</p>
+</li>
+<li>
+<p>Sum the wave displacements from all sources:
+     $$
+     \eta_{\text{sum}}(x,y,t) = \sum_{i=1}^{N} \eta_i(x,y,t)
+     $$</p>
+</li>
+<li>
+<p><strong>Analyze Interference Patterns</strong>:</p>
+</li>
+<li>
+<p>Identify regions of <strong>constructive interference</strong> (waves amplify) and <strong>destructive interference</strong> (waves cancel).</p>
+</li>
+<li>
+<p><strong>Visualization</strong>:</p>
+</li>
+<li>Use graphical tools to visualize the interference patterns.</li>
+</ol>
+<hr/>
+<h2 id="simulation-and-visualization">Simulation and Visualization</h2>
+<h3 id="python-implementation">Python Implementation:</h3>
+<p>Below is a Python script to simulate and visualize the interference patterns:</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+A = 1.0  # Amplitude
+wavelength = 1.0
+k = 2 * np.pi / wavelength  # Wave number
+omega = 2 * np.pi  # Angular frequency
+phi = 0  # Initial phase
+
+# Regular polygon vertices (e.g., square)
+N = 4
+radius = 2.0
+angles = np.linspace(0, 2 * np.pi, N, endpoint=False)
+sources = np.array([(radius * np.cos(angle), radius * np.sin(angle)) for angle in angles])
+
+# Grid for water surface
+x = np.linspace(-5, 5, 500)
+y = np.linspace(-5, 5, 500)
+X, Y = np.meshgrid(x, y)
+
+# Function to calculate wave displacement from a single source
+def wave_displacement(x, y, x0, y0, t):
+    r = np.sqrt((x - x0)**2 + (y - y0)**2)
+    return A / np.sqrt(r) * np.cos(k * r - omega * t + phi)
+
+# Time
+t = 0
+
+# Superposition of waves from all sources
+eta_sum = np.zeros_like(X)
+for (x0, y0) in sources:
+    eta_sum += wave_displacement(X, Y, x0, y0, t)
+
+# Plotting
+plt.figure(figsize=(10, 8))
+plt.contourf(X, Y, eta_sum, levels=50, cmap='viridis')
+plt.colorbar(label='Displacement')
+plt.scatter(sources[:, 0], sources[:, 1], color='red', label='Sources')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Interference Patterns on a Water Surface')
+plt.legend()
+plt.show()
+</code></pre>
+<hr/>
+<h2 id="results-and-discussion">Results and Discussion</h2>
+<h3 id="graphical-representation">Graphical Representation:</h3>
+<ul>
+<li>The plot shows the <strong>interference patterns</strong> on the water surface.</li>
+<li><strong>Bright regions</strong>: Constructive interference (waves amplify).</li>
+<li><strong>Dark regions</strong>: Destructive interference (waves cancel).</li>
+</ul>
+<h3 id="key-observations">Key Observations:</h3>
+<ol>
+<li><strong>Constructive Interference</strong>:</li>
+<li>Occurs when wave crests from different sources align.</li>
+<li>
+<p>Results in <strong>amplified wave displacement</strong>.</p>
+</li>
+<li>
+<p><strong>Destructive Interference</strong>:</p>
+</li>
+<li>Occurs when wave crests from one source align with troughs from another.</li>
+<li>Results in <strong>reduced or canceled wave displacement</strong>.</li>
+</ol>
+<hr/>
+<h2 id="applications">Applications</h2>
+<ol>
+<li><strong>Satellite Deployment</strong>:</li>
+<li>
+<p>Understanding wave interference helps in predicting the behavior of waves in space missions.</p>
+</li>
+<li>
+<p><strong>Acoustics and Optics</strong>:</p>
+</li>
+<li>
+<p>Interference patterns are crucial in designing sound systems and optical instruments.</p>
+</li>
+<li>
+<p><strong>Oceanography</strong>:</p>
+</li>
+<li>Studying wave interactions aids in predicting ocean wave behavior and coastal erosion.</li>
+</ol>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>This analysis demonstrates how <strong>wave superposition</strong> creates interference patterns on a water surface.</li>
+<li>The Python simulation provides a visual representation of constructive and destructive interference.</li>
+<li>These principles are fundamental in fields like <strong>physics, engineering, and environmental science</strong>.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
