@@ -29,10 +29,15 @@ $$
 
 Where:
 - $\eta(x,y,t)$: Displacement of the water surface at point $(x,y)$ and time $t$.
-- $A$: Amplitude of the wave.
+  
+-$A$: Amplitude of the wave.
+
 - $k = \frac{2\pi}{\lambda}$: Wave number, related to wavelength $\lambda$.
+  
 - $\omega = 2\pi f$: Angular frequency, related to frequency $f$.
+
 - $r = \sqrt{(x - x_0)^2 + (y - y_0)^2}$: Distance from the source to $(x,y)$.
+
 - $\phi$: Initial phase.
 
 ---
