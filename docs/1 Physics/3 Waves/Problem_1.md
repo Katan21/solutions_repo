@@ -30,7 +30,7 @@ $$
 Where:
 - $\eta(x,y,t)$: Displacement of the water surface at point $(x,y)$ and time $t$.
   
--$A$: Amplitude of the wave.
+- $A$: Amplitude of the wave.
 
 - $k = \frac{2\pi}{\lambda}$: Wave number, related to wavelength $\lambda$.
   
