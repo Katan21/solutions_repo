@@ -211,8 +211,8 @@
 <hr/>
 <h2 id="introduction">Introduction</h2>
 <h3 id="key-concept">Key Concept:</h3>
-<p>The Lorentz force governs charged particle motion in electromagnetic fields:
-<span class="arithmatex">\(<span class="arithmatex">\(\mathbf{F} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B}\)</span>\)</span></p>
+<p>The Lorentz force governs charged particle motion in electromagnetic fields:</p>
+<div class="arithmatex">\[\mathbf{F} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B}\]</div>
 <h3 id="applications">Applications:</h3>
 <ul>
 <li>Particle accelerators</li>
@@ -225,10 +225,10 @@
 <h3 id="numerical-methods">Numerical Methods:</h3>
 <ul>
 <li><strong>Runge-Kutta 4th order</strong> for accurate trajectory calculation</li>
-<li>Time-step integration of equations of motion:
-  <span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{v}}{dt} = \frac{q}{m}(\mathbf{E} + \mathbf{v} \times \mathbf{B})\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{r}}{dt} = \mathbf{v}\)</span>\)</span></li>
+<li>Time-step integration of equations of motion:</li>
 </ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{v}}{dt} = \frac{q}{m}(\mathbf{E} + \mathbf{v} \times \mathbf{B})\)</span>\)</span>
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{r}}{dt} = \mathbf{v}\)</span>\)</span></p>
 <h3 id="field-configurations">Field Configurations:</h3>
 <ol>
 <li>Uniform magnetic field (helical motion)</li>
@@ -242,41 +242,95 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # Constants
-q = 1.6e-19  # Particle charge (C)
-m = 9.1e-31  # Particle mass (kg)
+q = 1.6e-19  # Particle charge [C] (electron)
+m = 9.1e-31  # Particle mass [kg] (electron)
 
-def lorentz_force(r, v, t, E, B):
-    return q*(E + np.cross(v, B))/m
+def lorentz_force(v, E, B):
+    """Calculate acceleration from Lorentz force"""
+    return (q/m) * (E + np.cross(v, B))
 
-def runge_kutta_4(r0, v0, t, E, B):
-    trajectory = np.zeros((len(t), 3))
-    r, v = r0.copy(), v0.copy()
-    for i in range(len(t)):
-        k1v = lorentz_force(r, v, t[i], E, B)
-        k1r = v
-        k2v = lorentz_force(r + 0.5*k1r*dt, v + 0.5*k1v*dt, t[i]+0.5*dt, E, B)
-        k2r = v + 0.5*k1v*dt
-        k3v = lorentz_force(r + 0.5*k2r*dt, v + 0.5*k2v*dt, t[i]+0.5*dt, E, B)
-        k3r = v + 0.5*k2v*dt
-        k4v = lorentz_force(r + k3r*dt, v + k3v*dt, t[i]+dt, E, B)
-        k4r = v + k3v*dt
+def solve_motion(r0, v0, E, B, t_max=1e-6, dt=1e-9):
+    """Numerical solution using Runge-Kutta 4th order"""
+    t_values = np.arange(0, t_max, dt)
+    n_steps = len(t_values)
 
-        v += (k1v + 2*k2v + 2*k3v + k4v)*dt/6
-        r += (k1r + 2*k2r + 2*k3r + k4r)*dt/6
-        trajectory[i] = r
-    return trajectory
+    r = np.zeros((n_steps, 3))
+    v = np.zeros((n_steps, 3))
+    r[0] = r0
+    v[0] = v0
+
+    for i in range(n_steps-1):
+        # Current state
+        r_current = r[i]
+        v_current = v[i]
+
+        # RK4 coefficients
+        k1v = lorentz_force(v_current, E, B)
+        k1r = v_current
+
+        k2v = lorentz_force(v_current + 0.5*dt*k1v, E, B)
+        k2r = v_current + 0.5*dt*k1v
+
+        k3v = lorentz_force(v_current + 0.5*dt*k2v, E, B)
+        k3r = v_current + 0.5*dt*k2v
+
+        k4v = lorentz_force(v_current + dt*k3v, E, B)
+        k4r = v_current + dt*k3v
+
+        # Update state
+        v[i+1] = v_current + (dt/6)*(k1v + 2*k2v + 2*k3v + k4v)
+        r[i+1] = r_current + (dt/6)*(k1r + 2*k2r + 2*k3r + k4r)
+
+    return t_values, r, v
+
+def plot_trajectory_3d(r, title):
+    """3D trajectory plotting"""
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot(r[:,0], r[:,1], r[:,2], lw=2)
+    ax.set_xlabel('X [m]')
+    ax.set_ylabel('Y [m]')
+    ax.set_zlabel('Z [m]')
+    ax.set_title(title)
+    plt.tight_layout()
+    plt.show()
+
+# Case 1: Uniform B field (helical motion)
+B = np.array([0, 0, 1])  # 1 Tesla in z-direction
+E = np.array([0, 0, 0])  # No electric field
+r0 = np.array([0, 0, 0])
+v0 = np.array([1e6, 0, 1e5])  # Initial velocity (m/s)
+
+t, r, v = solve_motion(r0, v0, E, B, t_max=1e-7)
+plot_trajectory_3d(r, 'Helical Motion in Uniform B Field')
+
+# Case 2: Crossed E and B fields (E×B drift)
+B = np.array([0, 0, 1])  # 1 Tesla in z-direction
+E = np.array([0, 1e4, 0])  # 10 kV/m in y-direction
+v0 = np.array([1e6, 0, 0])  # Initial velocity (m/s)
+
+t, r, v = solve_motion(r0, v0, E, B, t_max=5e-7)
+plot_trajectory_3d(r, 'E×B Drift Motion')
+
+# Case 3: Combined fields (complex motion)
+B = np.array([0.5, 0, 1])  # Combined B field
+E = np.array([1e4, 1e4, 0])  # Combined E field
+v0 = np.array([1e6, 0, 1e5])  # Initial velocity (m/s)
+
+t, r, v = solve_motion(r0, v0, E, B, t_max=1e-7)
+plot_trajectory_3d(r, 'Complex Motion in Combined Fields')
 </code></pre>
 <hr/>
 <h2 id="visualization-gallery">Visualization Gallery</h2>
 <h3 id="case-1-uniform-magnetic-field-b-1tz">Case 1: Uniform Magnetic Field (B = 1Tẑ)</h3>
-<p><img alt="alt text" src="../Helical%20Trajectory.jpeg"/></p>
+<p><img alt="alt text" src="../electro1.png"/></p>
 <p><strong>Circular motion</strong> in xy-plane with <strong>constant drift</strong> along z-axis</p>
 <h3 id="case-2-crossed-fields-e-1kvmy-b-1tz">Case 2: Crossed Fields (E = 1kV/mŷ, B = 1Tẑ)</h3>
-<p><img alt="alt text" src="../drift.png"/>
+<p><img alt="alt text" src="../electro2.png"/>
 <strong>Curved trajectory</strong> showing <strong>E×B drift</strong> phenomenon</p>
 <h3 id="case-3-combined-fields-e-b-1-units">Case 3: Combined Fields (E = B = 1 units)</h3>
-<p><img alt="alt text" src="../Complex%20Trajectory.png"/>
-<strong>Spiral motion</strong> with <strong>varying radius</strong></p>
+<p><img alt="alt text" src="../electro3.png"/></p>
+<p><strong>Spiral motion</strong> with <strong>varying radius</strong></p>
 <hr/>
 <h2 id="key-parameters">Key Parameters</h2>
 <table>
