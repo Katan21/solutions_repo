@@ -6,8 +6,11 @@
 ## 1. Motivation
 
 Monte Carlo methods use randomness to estimate values or solve problems, offering a simple yet powerful approach. Estimating π (≈ 3.14159) through geometric probability is a classic example, connecting probability, geometry, and computation. This task explores two methods:
+
 - **Circle-Based Method:** Uses random points in a square and circle.
+
 - **Buffon’s Needle Method:** Uses random needle drops on a lined plane.
+
 
 These simulations show how randomness can approximate mathematical constants and provide insights into convergence and computational efficiency.
 
@@ -17,8 +20,11 @@ These simulations show how randomness can approximate mathematical constants and
 
 ### 1.1 Theoretical Foundation
 - **Setup:** Consider a square with side length 2 (area = 4) centered at (0, 0), containing a unit circle (radius = 1, area = π).
+
 - **Probability:** A random point in the square has a probability of landing inside the circle equal to the ratio of areas: $\frac{\text{Area of circle}}{\text{Area of square}} = \frac{\pi}{4}$.
-- **Formula:** Drop $N$ points, count $M$ inside the circle (distance from (0, 0) ≤ 1), then: $\frac{\pi}{4} \approx \frac{M}{N}$, so $\pi \approx 4 \times \frac{M}{N}$.
+
+- **Formula:** Drop $N$ points, count $M$ inside the circle (distance from (0, 0) ≤ 1), then: 
+ $\frac{\pi}{4} \approx \frac{M}{N}$, so $\pi \approx 4 \times \frac{M}{N}$
 
 ### 1.2 Simulation and Visualization
 We’ll generate points, count those inside the circle, and plot them.
@@ -29,8 +35,11 @@ We’ll generate points, count those inside the circle, and plot them.
 
 ### 2.1 Theoretical Foundation
 - **Setup:** Parallel lines are spaced $d$ apart on a plane. A needle of length $l$ ($l \leq d$) is dropped randomly.
+
 - **Probability:** The chance of crossing a line is $P = \frac{2l}{\pi d}$ (derived from integrating over all possible angles and positions).
+
 - **Formula:** Drop $N$ needles, count $M$ crossings, then: $P = \frac{2l}{\pi d} \approx \frac{M}{N}$, so $\pi \approx \frac{2l}{d} \times \frac{N}{M}$.
+
 
 ### 2.2 Simulation and Visualization
 We’ll simulate needle drops, count crossings, and visualize the setup.
@@ -165,35 +174,58 @@ files.download('convergence.png')
 
 ### Part 1: Circle-Based Method
 - **Visualization (n=1000):** 
+
   - Blue points inside the circle, red points outside.
+
   - Circle boundary shown in black.
+
   - Example: π ≈ 3.152 (close to 3.14159).
+
 - **Convergence:**
+
   - n=100: π ≈ 3.00, error ≈ 0.14.
+
   - n=1000: π ≈ 3.152, error ≈ 0.01.
+
   - n=10000: π ≈ 3.138, error ≈ 0.004.
+
   - n=100000: π ≈ 3.141, error ≈ 0.001.
+
 - **Analysis:** Accuracy improves with more points. Convergence is steady, with error decreasing as $\frac{1}{\sqrt{n}}$ (typical for Monte Carlo).
 
 ### Part 2: Buffon’s Needle Method
+
 - **Visualization (n=1000):**
+
   - Blue needles don’t cross lines, red needles do.
+
   - Lines at y=0 and y=1.
+
   - Example: π ≈ 3.076 (less accurate than circle method).
+
 - **Convergence:**
+
   - n=100: π ≈ 2.857, error ≈ 0.285.
+
   - n=1000: π ≈ 3.076, error ≈ 0.065.
+
   - n=10000: π ≈ 3.165, error ≈ 0.023.
+
   - n=100000: π ≈ 3.139, error ≈ 0.003.
+
 - **Analysis:** Slower convergence due to lower probability of crossings (P ≈ 0.637 for $l=d=1$), leading to more variability.
 
 ### Convergence Comparison
+
 - **Plot:** Shows π estimates vs. iterations (log scale).
+
   - Circle method converges faster and is more stable.
+  
   - Buffon’s Needle has higher variance but approaches π with large n.
 
 ### Efficiency
 - **Circle Method:** Simple distance calculation per point, computationally light.
+
 - **Buffon’s Needle:** Requires trigonometric calculations and line-crossing checks, making it slower.
 
 ---
@@ -201,8 +233,11 @@ files.download('convergence.png')
 ## 5. Discussion
 
 - **Theoretical Foundations:** Both methods rely on geometric probability. The circle method uses area ratios, while Buffon’s Needle uses line-crossing probability.
+
 - **Accuracy:** Circle method is more accurate for fewer iterations due to a higher signal-to-noise ratio.
+
 - **Efficiency:** Circle method is faster and less computationally intensive.
+
 - **Real-World Insight:** Monte Carlo methods like these are used in physics (e.g., particle simulations) and finance (e.g., option pricing), showing how randomness can solve complex problems.
 
 ---
