@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Lorentz Force Simulation: Visualizing Charged Particle Motion - Physics and Mathematics</title>
+<title>Problem 1 - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Lorentz Force Simulation: Visualizing Charged Particle Motion";
+        var mkdocs_page_name = "Problem 1";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,43 +70,37 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Lorentz Force Simulation: Visualizing Charged Particle Motion</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#key-concept">Key Concept:</a>
+<li class="toctree-l3"><a class="reference internal" href="#1-motivation-and-applications">1. Motivation and Applications</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#applications">Applications:</a>
+<li class="toctree-l3"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#equations-of-motion">Equations of Motion</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#simulation-approach">Simulation Approach</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#numerical-methods">Numerical Methods:</a>
+<li class="toctree-l3"><a class="reference internal" href="#3-python-code-for-google-colab">3. Python Code for Google Colab</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#field-configurations">Field Configurations:</a>
+<li class="toctree-l3"><a class="reference internal" href="#4-outputs-and-explanation">4. Outputs and Explanation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#scenarios">Scenarios</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-exploration">Parameter Exploration</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#python-implementation">Python Implementation</a>
+<li class="toctree-l3"><a class="reference internal" href="#5-visualization">5. Visualization</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#visualization-gallery">Visualization Gallery</a>
+<li class="toctree-l3"><a class="reference internal" href="#6-discussion">6. Discussion</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#case-1-uniform-magnetic-field-b-1tz">Case 1: Uniform Magnetic Field (B = 1Tẑ)</a>
+<li class="toctree-l4"><a class="reference internal" href="#relation-to-practical-systems">Relation to Practical Systems</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#case-2-crossed-fields-e-1kvmy-b-1tz">Case 2: Crossed Fields (E = 1kV/mŷ, B = 1Tẑ)</a>
+<li class="toctree-l4"><a class="reference internal" href="#physical-phenomena">Physical Phenomena</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#case-3-combined-fields-e-b-1-units">Case 3: Combined Fields (E = B = 1 units)</a>
+<li class="toctree-l4"><a class="reference internal" href="#extensions">Extensions</a>
 </li>
 </ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#key-parameters">Key Parameters</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#practical-applications">Practical Applications</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#extensions">Extensions</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
 </li>
 </ul>
 </li>
@@ -199,7 +193,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Lorentz Force Simulation: Visualizing Charged Particle Motion</li>
+<li class="breadcrumb-item active">Problem 1</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -207,213 +201,212 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="lorentz-force-simulation-visualizing-charged-particle-motion">Lorentz Force Simulation: Visualizing Charged Particle Motion</h1>
 <hr/>
-<h2 id="introduction">Introduction</h2>
-<h3 id="key-concept">Key Concept:</h3>
-<p>The Lorentz force governs charged particle motion in electromagnetic fields:</p>
-<div class="arithmatex">\[\mathbf{F} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B}\]</div>
-<h3 id="applications">Applications:</h3>
+<h1 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h1>
+<h2 id="1-motivation-and-applications">1. Motivation and Applications</h2>
+<p>The <strong>Lorentz force</strong> governs how charged particles move in electric (<span class="arithmatex">\(\mathbf{E}\)</span>) and magnetic (<span class="arithmatex">\(\mathbf{B}\)</span>) fields, defined as:
+$$
+\mathbf{F} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B})
+$$
+where <span class="arithmatex">\(q\)</span> is the charge, <span class="arithmatex">\(\mathbf{v}\)</span> is the velocity, and <span class="arithmatex">\(\times\)</span> denotes the cross product. This force is fundamental in many systems:</p>
 <ul>
-<li>Particle accelerators</li>
-<li>Mass spectrometers</li>
-<li>Plasma confinement devices</li>
-<li>Astrophysical phenomena</li>
+<li><strong>Particle Accelerators:</strong> Cyclotrons and synchrotrons use magnetic fields to bend charged particles into circular paths, accelerating them with electric fields.</li>
+<li><strong>Mass Spectrometers:</strong> The Lorentz force separates ions by mass-to-charge ratio based on their trajectories in magnetic fields.</li>
+<li><strong>Plasma Confinement:</strong> In fusion devices (e.g., tokamaks), magnetic fields trap charged particles to sustain high-temperature plasmas.</li>
+<li><strong>Astrophysics:</strong> Solar winds and auroras result from charged particles interacting with Earth’s magnetic field.</li>
 </ul>
+<p><strong>Role of Fields:</strong>
+- <strong>Electric Field (<span class="arithmatex">\(\mathbf{E}\)</span>):</strong> Accelerates particles along the field direction.
+- <strong>Magnetic Field (<span class="arithmatex">\(\mathbf{B}\)</span>):</strong> Causes circular or helical motion perpendicular to both <span class="arithmatex">\(\mathbf{v}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span>, without changing speed.</p>
 <hr/>
-<h2 id="simulation-approach">Simulation Approach</h2>
-<h3 id="numerical-methods">Numerical Methods:</h3>
-<ul>
-<li><strong>Runge-Kutta 4th order</strong> for accurate trajectory calculation</li>
-<li>Time-step integration of equations of motion:</li>
-</ul>
-<p><span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{v}}{dt} = \frac{q}{m}(\mathbf{E} + \mathbf{v} \times \mathbf{B})\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{r}}{dt} = \mathbf{v}\)</span>\)</span></p>
-<h3 id="field-configurations">Field Configurations:</h3>
-<ol>
-<li>Uniform magnetic field (helical motion)</li>
-<li>Crossed E and B fields (drift motion)</li>
-<li>Combined fields (complex trajectories)</li>
-</ol>
+<h2 id="2-simulating-particle-motion">2. Simulating Particle Motion</h2>
+<p>We’ll simulate a charged particle’s trajectory under:
+- A uniform magnetic field.
+- Combined uniform electric and magnetic fields.
+- Crossed electric and magnetic fields.</p>
+<h3 id="equations-of-motion">Equations of Motion</h3>
+<p>From Newton’s second law:
+$$
+\mathbf{F} = m \mathbf{a} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B})
+$$
+Acceleration:
+$$
+\mathbf{a} = \frac{d\mathbf{v}}{dt} = \frac{q}{m} (\mathbf{E} + \mathbf{v} \times \mathbf{B})
+$$
+Position:
+$$
+\frac{d\mathbf{r}}{dt} = \mathbf{v}
+$$</p>
+<p>We’ll use the <strong>Runge-Kutta method</strong> (via <code>scipy.integrate.odeint</code>) to solve these differential equations numerically.</p>
 <hr/>
-<h2 id="python-implementation">Python Implementation</h2>
-<pre><code class="language-python">import numpy as np
+<h2 id="3-python-code-for-google-colab">3. Python Code for Google Colab</h2>
+<p>This code implements the simulation, visualizes trajectories, and explores parameter variations.</p>
+<pre><code class="language-python"># Import libraries (Colab-compatible)
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import odeint
 from mpl_toolkits.mplot3d import Axes3D
+from google.colab import files
 
-# Constants
-q = 1.6e-19  # Particle charge [C] (electron)
-m = 9.1e-31  # Particle mass [kg] (electron)
+# Constants (e.g., a proton)
+q = 1.6e-19  # Charge (Coulombs)
+m = 1.67e-27  # Mass (kg)
+E0 = 1e3  # Electric field strength (V/m)
+B0 = 0.1  # Magnetic field strength (Tesla)
 
-def lorentz_force(v, E, B):
-    """Calculate acceleration from Lorentz force"""
-    return (q/m) * (E + np.cross(v, B))
+# Function to compute derivatives
+def lorentz_motion(state, t, q, m, E, B):
+    """
+    Compute derivatives for position and velocity.
+    state = [x, y, z, vx, vy, vz]
+    E = [Ex, Ey, Ez], B = [Bx, By, Bz]
+    """
+    x, y, z, vx, vy, vz = state
+    v = np.array([vx, vy, vz])
 
-def solve_motion(r0, v0, E, B, t_max=1e-6, dt=1e-9):
-    """Numerical solution using Runge-Kutta 4th order"""
-    t_values = np.arange(0, t_max, dt)
-    n_steps = len(t_values)
+    # Lorentz force: F = q(E + v x B)
+    E_term = q * np.array(E) / m
+    B_term = q * np.cross(v, np.array(B)) / m
 
-    r = np.zeros((n_steps, 3))
-    v = np.zeros((n_steps, 3))
-    r[0] = r0
-    v[0] = v0
+    # Acceleration: dv/dt
+    ax, ay, az = E_term + B_term
 
-    for i in range(n_steps-1):
-        # Current state
-        r_current = r[i]
-        v_current = v[i]
+    # Velocity: dx/dt
+    return [vx, vy, vz, ax, ay, az]
 
-        # RK4 coefficients
-        k1v = lorentz_force(v_current, E, B)
-        k1r = v_current
+# Time array
+t = np.linspace(0, 1e-6, 1000)  # 1 microsecond
 
-        k2v = lorentz_force(v_current + 0.5*dt*k1v, E, B)
-        k2r = v_current + 0.5*dt*k1v
+# Initial conditions: [x, y, z, vx, vy, vz]
+initial_state = [0, 0, 0, 1e5, 0, 0]  # Start at origin, velocity along x (10^5 m/s)
 
-        k3v = lorentz_force(v_current + 0.5*dt*k2v, E, B)
-        k3r = v_current + 0.5*dt*k2v
+# Scenarios
+scenarios = {
+    'Uniform Magnetic Field': {'E': [0, 0, 0], 'B': [0, 0, B0]},
+    'Combined Fields': {'E': [E0, 0, 0], 'B': [0, 0, B0]},
+    'Crossed Fields': {'E': [0, E0, 0], 'B': [0, 0, B0]}
+}
 
-        k4v = lorentz_force(v_current + dt*k3v, E, B)
-        k4r = v_current + dt*k3v
+# Simulate and visualize
+for scenario, fields in scenarios.items():
+    E, B = fields['E'], fields['B']
+    sol = odeint(lorentz_motion, initial_state, t, args=(q, m, E, B))
+    x, y, z = sol[:, 0], sol[:, 1], sol[:, 2]
 
-        # Update state
-        v[i+1] = v_current + (dt/6)*(k1v + 2*k2v + 2*k3v + k4v)
-        r[i+1] = r_current + (dt/6)*(k1r + 2*k2r + 2*k3r + k4r)
-
-    return t_values, r, v
-
-def plot_trajectory_3d(r, title):
-    """3D trajectory plotting"""
-    fig = plt.figure(figsize=(10, 8))
-    ax = fig.add_subplot(111, projection='3d')
-    ax.plot(r[:,0], r[:,1], r[:,2], lw=2)
-    ax.set_xlabel('X [m]')
-    ax.set_ylabel('Y [m]')
-    ax.set_zlabel('Z [m]')
-    ax.set_title(title)
+    # 2D Plot (x-y plane)
+    plt.figure(figsize=(8, 6), dpi=100)
+    plt.plot(x, y, 'b-', label='Trajectory')
+    plt.xlabel('x (m)', fontsize=14)
+    plt.ylabel('y (m)', fontsize=14)
+    plt.title(f'2D Trajectory: {scenario}', fontsize=16)
+    plt.legend(fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.axis('equal')
     plt.tight_layout()
+    plt.savefig(f'2D_{scenario.replace(" ", "_")}.png', dpi=100, bbox_inches='tight')
     plt.show()
 
-# Case 1: Uniform B field (helical motion)
-B = np.array([0, 0, 1])  # 1 Tesla in z-direction
-E = np.array([0, 0, 0])  # No electric field
-r0 = np.array([0, 0, 0])
-v0 = np.array([1e6, 0, 1e5])  # Initial velocity (m/s)
+    # 3D Plot
+    fig = plt.figure(figsize=(8, 8), dpi=100)
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot(x, y, z, 'b-', label='Trajectory')
+    ax.set_xlabel('x (m)', fontsize=12)
+    ax.set_ylabel('y (m)', fontsize=12)
+    ax.set_zlabel('z (m)', fontsize=12)
+    ax.set_title(f'3D Trajectory: {scenario}', fontsize=16)
+    ax.legend(fontsize=12)
+    plt.tight_layout()
+    plt.savefig(f'3D_{scenario.replace(" ", "_")}.png', dpi=100, bbox_inches='tight')
+    plt.show()
 
-t, r, v = solve_motion(r0, v0, E, B, t_max=1e-7)
-plot_trajectory_3d(r, 'Helical Motion in Uniform B Field')
+# Parameter Exploration: Vary magnetic field strength
+B_values = [0.05, 0.1, 0.2]  # Tesla
+plt.figure(figsize=(8, 6), dpi=100)
+for B_val in B_values:
+    B = [0, 0, B_val]
+    E = [0, 0, 0]  # Only magnetic field
+    sol = odeint(lorentz_motion, initial_state, t, args=(q, m, E, B))
+    x, y = sol[:, 0], sol[:, 1]
+    plt.plot(x, y, label=f'B = {B_val} T')
+plt.xlabel('x (m)', fontsize=14)
+plt.ylabel('y (m)', fontsize=14)
+plt.title('Effect of Magnetic Field Strength on Trajectory', fontsize=16)
+plt.legend(fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.axis('equal')
+plt.tight_layout()
+plt.savefig('B_variation.png', dpi=100, bbox_inches='tight')
+plt.show()
 
-# Case 2: Crossed E and B fields (E×B drift)
-B = np.array([0, 0, 1])  # 1 Tesla in z-direction
-E = np.array([0, 1e4, 0])  # 10 kV/m in y-direction
-v0 = np.array([1e6, 0, 0])  # Initial velocity (m/s)
-
-t, r, v = solve_motion(r0, v0, E, B, t_max=5e-7)
-plot_trajectory_3d(r, 'E×B Drift Motion')
-
-# Case 3: Combined fields (complex motion)
-B = np.array([0.5, 0, 1])  # Combined B field
-E = np.array([1e4, 1e4, 0])  # Combined E field
-v0 = np.array([1e6, 0, 1e5])  # Initial velocity (m/s)
-
-t, r, v = solve_motion(r0, v0, E, B, t_max=1e-7)
-plot_trajectory_3d(r, 'Complex Motion in Combined Fields')
+# Download plots
+for scenario in scenarios:
+    files.download(f'2D_{scenario.replace(" ", "_")}.png')
+    files.download(f'3D_{scenario.replace(" ", "_")}.png')
+files.download('B_variation.png')
 </code></pre>
 <hr/>
-<h2 id="visualization-gallery">Visualization Gallery</h2>
-<h3 id="case-1-uniform-magnetic-field-b-1tz">Case 1: Uniform Magnetic Field (B = 1Tẑ)</h3>
-<p><img alt="alt text" src="../electro1.png"/></p>
-<p><strong>Circular motion</strong> in xy-plane with <strong>constant drift</strong> along z-axis</p>
-<h3 id="case-2-crossed-fields-e-1kvmy-b-1tz">Case 2: Crossed Fields (E = 1kV/mŷ, B = 1Tẑ)</h3>
-<p><img alt="alt text" src="../electro2.png"/>
-<strong>Curved trajectory</strong> showing <strong>E×B drift</strong> phenomenon</p>
-<h3 id="case-3-combined-fields-e-b-1-units">Case 3: Combined Fields (E = B = 1 units)</h3>
-<p><img alt="alt text" src="../electro3.png"/></p>
-<p><strong>Spiral motion</strong> with <strong>varying radius</strong></p>
-<hr/>
-<h2 id="key-parameters">Key Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Effect on Trajectory</th>
-<th>Typical Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>q/m ratio</td>
-<td>Determines curvature</td>
-<td>1.76×10¹¹ C/kg</td>
-</tr>
-<tr>
-<td>E field</td>
-<td>Causes acceleration</td>
-<td>1-1000 kV/m</td>
-</tr>
-<tr>
-<td>B field</td>
-<td>Induces rotation</td>
-<td>0.1-10 T</td>
-</tr>
-<tr>
-<td>v₀</td>
-<td>Initial conditions</td>
-<td>10³-10⁷ m/s</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="practical-applications">Practical Applications</h2>
+<h2 id="4-outputs-and-explanation">4. Outputs and Explanation</h2>
+<p><img alt="alt text" src="../2D_Uniform_Magnetic_Field.png"/>
+<img alt="alt text" src="../3D_Uniform_Magnetic_Field.png"/>
+<img alt="alt text" src="../2D_Combined_Fields.png"/>
+<img alt="alt text" src="../3D_Combined_Fields.png"/>
+<img alt="alt text" src="../2D_Crossed_Fields.png"/>
+<img alt="alt text" src="../3D_Crossed_Fields.png"/>
+<img alt="alt text" src="../B_variation.png"/></p>
+<h3 id="scenarios">Scenarios</h3>
 <ol>
-<li><strong>Cyclotrons</strong>:</li>
-<li>Particles spiral outward with increasing energy</li>
+<li><strong>Uniform Magnetic Field (<span class="arithmatex">\(\mathbf{B} = [0, 0, 0.1]\)</span> T):</strong></li>
+<li><strong>Trajectory:</strong> Circular motion in the x-y plane.</li>
+<li><strong>Reason:</strong> Magnetic force (<span class="arithmatex">\(\mathbf{v} \times \mathbf{B}\)</span>) is perpendicular to velocity, causing circular motion.</li>
 <li>
-<p>RF fields synchronized with orbital frequency</p>
+<p><strong>Larmor Radius:</strong> <span class="arithmatex">\(r = \frac{mv}{qB}\)</span>. For <span class="arithmatex">\(v = 10^5\)</span> m/s, <span class="arithmatex">\(B = 0.1\)</span> T: <span class="arithmatex">\(r \approx 0.01\)</span> m.</p>
 </li>
 <li>
-<p><strong>Mass Spectrometers</strong>:</p>
+<p><strong>Combined Fields (<span class="arithmatex">\(\mathbf{E} = [10^3, 0, 0]\)</span>, <span class="arithmatex">\(\mathbf{B} = [0, 0, 0.1]\)</span> T):</strong></p>
 </li>
-<li>Different q/m ratios yield distinct paths</li>
+<li><strong>Trajectory:</strong> Helical motion with drift along the x-axis.</li>
 <li>
-<p>Enables precise mass measurements</p>
+<p><strong>Reason:</strong> Electric field accelerates the particle along x, while magnetic field causes circular motion in the y-z plane.</p>
 </li>
 <li>
-<p><strong>Magnetic Confinement</strong>:</p>
+<p><strong>Crossed Fields (<span class="arithmatex">\(\mathbf{E} = [0, 10^3, 0]\)</span>, <span class="arithmatex">\(\mathbf{B} = [0, 0, 0.1]\)</span> T):</strong></p>
 </li>
-<li>Plasma particles follow field lines</li>
-<li>Tokamak designs for fusion reactors</li>
+<li><strong>Trajectory:</strong> Cycloidal motion with drift in the x-direction.</li>
+<li><strong>Reason:</strong> <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span> are perpendicular, causing a drift velocity <span class="arithmatex">\(v_d = \frac{E}{B} = \frac{10^3}{0.1} = 10^4\)</span> m/s.</li>
 </ol>
-<hr/>
-<h2 id="extensions">Extensions</h2>
-<ol>
-<li><strong>Non-uniform fields</strong>:</li>
-<li>Gradient-B drift effects</li>
-<li>
-<p>Magnetic mirror configurations</p>
-</li>
-<li>
-<p><strong>Relativistic effects</strong>:</p>
-</li>
-<li>Significant at v &gt; 0.1c</li>
-<li>
-<p>Mass increase alters trajectories</p>
-</li>
-<li>
-<p><strong>Multi-particle systems</strong>:</p>
-</li>
-<li>Space charge effects</li>
-<li>Particle-particle interactions</li>
-</ol>
-<hr/>
-<h2 id="conclusion">Conclusion</h2>
+<h3 id="parameter-exploration">Parameter Exploration</h3>
 <ul>
-<li>Lorentz force simulations reveal <strong>complex 3D trajectories</strong></li>
-<li>Field configurations produce <strong>distinct motion patterns</strong></li>
-<li>Applications span <strong>accelerators to astrophysics</strong></li>
-<li>Python provides <strong>effective visualization tools</strong></li>
+<li><strong>Magnetic Field Strength (<span class="arithmatex">\(B = 0.05, 0.1, 0.2\)</span> T):</strong></li>
+<li>Higher <span class="arithmatex">\(B\)</span> reduces the Larmor radius (<span class="arithmatex">\(r \propto \frac{1}{B}\)</span>), making tighter circles.</li>
+<li>Plot shows smaller loops as <span class="arithmatex">\(B\)</span> increases.</li>
 </ul>
+<hr/>
+<h2 id="5-visualization">5. Visualization</h2>
+<ul>
+<li><strong>2D Plots:</strong> Show x-y trajectories for each scenario.</li>
+<li><strong>3D Plots:</strong> Display full paths (x, y, z), highlighting circular, helical, or drift motion.</li>
+<li><strong>Parameter Plot:</strong> Compares trajectories for different <span class="arithmatex">\(B\)</span> values, showing the Larmor radius effect.</li>
+</ul>
+<hr/>
+<h2 id="6-discussion">6. Discussion</h2>
+<h3 id="relation-to-practical-systems">Relation to Practical Systems</h3>
+<ul>
+<li><strong>Cyclotrons:</strong> Use uniform magnetic fields to keep particles in circular paths, accelerating them with electric fields. The simulation’s circular motion matches this.</li>
+<li><strong>Magnetic Traps:</strong> In plasma confinement, magnetic fields create helical paths to trap particles, similar to the combined fields case.</li>
+<li><strong>Mass Spectrometers:</strong> Crossed fields produce drift, used to separate ions by mass-to-charge ratio.</li>
+</ul>
+<h3 id="physical-phenomena">Physical Phenomena</h3>
+<ul>
+<li><strong>Larmor Radius:</strong> <span class="arithmatex">\(r = \frac{mv}{qB}\)</span>. Smaller with higher <span class="arithmatex">\(B\)</span> or lower <span class="arithmatex">\(v\)</span>, as seen in the <span class="arithmatex">\(B\)</span> variation plot.</li>
+<li><strong>Drift Velocity:</strong> <span class="arithmatex">\(v_d = \frac{E}{B}\)</span>. In crossed fields, the particle drifts at <span class="arithmatex">\(10^4\)</span> m/s, consistent with the simulation.</li>
+</ul>
+<h3 id="extensions">Extensions</h3>
+<ul>
+<li><strong>Non-Uniform Fields:</strong> Simulate gradients in <span class="arithmatex">\(\mathbf{B}\)</span> (e.g., magnetic bottles) to trap particles.</li>
+<li><strong>Relativistic Effects:</strong> For high speeds (<span class="arithmatex">\(v \approx c\)</span>), include relativistic corrections.</li>
+<li><strong>Multiple Particles:</strong> Model interactions in a plasma.</li>
+</ul>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
