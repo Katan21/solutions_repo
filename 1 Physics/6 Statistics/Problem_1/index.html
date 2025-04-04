@@ -206,15 +206,29 @@
 <h2 id="2-simulating-sampling-distributions">2. Simulating Sampling Distributions</h2>
 <h3 id="step-1-population-distributions">Step 1: Population Distributions</h3>
 <p>We’ll simulate three population distributions:
-- <strong>Uniform Distribution:</strong> All values equally likely (e.g., a random number between 0 and 10).
-- <strong>Exponential Distribution:</strong> Skewed, with most values small and a long tail (e.g., time between events).
-- <strong>Binomial Distribution:</strong> Discrete, counting successes in fixed trials (e.g., heads in 10 coin flips).</p>
+- <strong>Uniform Distribution:</strong> All values equally likely (e.g., a random number between 0 and 10).</p>
+<ul>
+<li>
+<p><strong>Exponential Distribution:</strong> Skewed, with most values small and a long tail (e.g., time between events).</p>
+</li>
+<li>
+<p><strong>Binomial Distribution:</strong> Discrete, counting successes in fixed trials (e.g., heads in 10 coin flips).</p>
+</li>
+</ul>
 <h3 id="step-2-sampling-and-visualization">Step 2: Sampling and Visualization</h3>
 <p>For each population:
-- Generate a large dataset (100,000 points).
-- Take random samples of sizes 5, 10, 30, and 50.
-- Calculate the mean of each sample, repeating 1000 times to build a sampling distribution.
-- Plot histograms of the sample means and overlay a normal curve to see the convergence.</p>
+- Generate a large dataset (100,000 points).</p>
+<ul>
+<li>
+<p>Take random samples of sizes 5, 10, 30, and 50.</p>
+</li>
+<li>
+<p>Calculate the mean of each sample, repeating 1000 times to build a sampling distribution.</p>
+</li>
+<li>
+<p>Plot histograms of the sample means and overlay a normal curve to see the convergence.</p>
+</li>
+</ul>
 <hr/>
 <h2 id="3-python-code-for-google-colab">3. Python Code for Google Colab</h2>
 <p>This code implements the simulation, creates visualizations, and analyzes the results.</p>
@@ -325,40 +339,86 @@ for pop_name in populations:
 <img alt="alt text" src="../sampling_Binomial.png"/></p>
 <h3 id="population-distributions">Population Distributions</h3>
 <ul>
-<li><strong>Uniform:</strong> Flat between 0 and 10 (mean ≈ 5, variance ≈ 8.33).</li>
-<li><strong>Exponential:</strong> Skewed right, most values near 0 (mean ≈ 1, variance ≈ 1).</li>
-<li><strong>Binomial:</strong> Discrete peaks around 5 (mean ≈ 5, variance ≈ 2.5).</li>
+<li>
+<p><strong>Uniform:</strong> Flat between 0 and 10 (mean ≈ 5, variance ≈ 8.33).</p>
+</li>
+<li>
+<p><strong>Exponential:</strong> Skewed right, most values near 0 (mean ≈ 1, variance ≈ 1).</p>
+</li>
+<li>
+<p><strong>Binomial:</strong> Discrete peaks around 5 (mean ≈ 5, variance ≈ 2.5).</p>
+</li>
 </ul>
 <h3 id="sampling-distributions">Sampling Distributions</h3>
-<p>For each population and sample size (5, 10, 30, 50):
-- <strong>Uniform:</strong> Starts slightly bumpy at n=5, becomes a smooth bell curve by n=50.
-- <strong>Exponential:</strong> Highly skewed at n=5, approaches normality by n=30-50.
-- <strong>Binomial:</strong> Discrete at n=5, smooths into a normal shape by n=50.
-- <strong>Normal Fit:</strong> Black curve shows the expected normal distribution, matching the histograms as n increases.</p>
+<p>For each population and sample size (5, 10, 30, 50):</p>
+<ul>
+<li>
+<p><strong>Uniform:</strong> Starts slightly bumpy at n=5, becomes a smooth bell curve by n=50.</p>
+</li>
+<li>
+<p><strong>Exponential:</strong> Highly skewed at n=5, approaches normality by n=30-50.</p>
+</li>
+<li>
+<p><strong>Binomial:</strong> Discrete at n=5, smooths into a normal shape by n=50.</p>
+</li>
+<li>
+<p><strong>Normal Fit:</strong> Black curve shows the expected normal distribution, matching the histograms as n increases.</p>
+</li>
+</ul>
 <h3 id="parameter-exploration">Parameter Exploration</h3>
 <ul>
-<li><strong>Shape Influence:</strong></li>
-<li><strong>Uniform (symmetric):</strong> Converges quickly to normality (even at n=5).</li>
-<li><strong>Exponential (skewed):</strong> Takes longer (n=30+) due to asymmetry.</li>
-<li><strong>Binomial (discrete):</strong> Converges steadily, smoother with larger n.</li>
-<li><strong>Variance Impact:</strong></li>
-<li>Sampling variance = <span class="arithmatex">\(\frac{\text{population variance}}{\text{sample size}}\)</span> (CLT prediction).</li>
-<li>Uniform: High population variance (8.33), sampling variance drops from ~1.67 (n=5) to ~0.17 (n=50).</li>
-<li>Exponential: Variance ≈ 1, sampling variance drops from ~0.20 (n=5) to ~0.02 (n=50).</li>
-<li>Binomial: Variance ≈ 2.5, sampling variance drops from ~0.50 (n=5) to ~0.05 (n=50).</li>
+<li>
+<p><strong>Shape Influence:</strong></p>
+</li>
+<li>
+<p><strong>Uniform (symmetric):</strong> Converges quickly to normality (even at n=5).</p>
+</li>
+<li>
+<p><strong>Exponential (skewed):</strong> Takes longer (n=30+) due to asymmetry.</p>
+</li>
+<li>
+<p><strong>Binomial (discrete):</strong> Converges steadily, smoother with larger n.</p>
+</li>
+<li>
+<p><strong>Variance Impact:</strong></p>
+</li>
+<li>
+<p>Sampling variance = <span class="arithmatex">\(\frac{\text{population variance}}{\text{sample size}}\)</span> (CLT prediction).</p>
+</li>
+<li>
+<p>Uniform: High population variance (8.33), sampling variance drops from ~1.67 (n=5) to ~0.17 (n=50).</p>
+</li>
+<li>
+<p>Exponential: Variance ≈ 1, sampling variance drops from ~0.20 (n=5) to ~0.02 (n=50).</p>
+</li>
+<li>
+<p>Binomial: Variance ≈ 2.5, sampling variance drops from ~0.50 (n=5) to ~0.05 (n=50).</p>
+</li>
 </ul>
 <hr/>
 <h2 id="5-practical-applications">5. Practical Applications</h2>
 <p>The CLT is vital in real-world scenarios because it justifies using normal distribution tools:
-- <strong>Estimating Population Parameters:</strong> Sample means estimate the population mean (e.g., polling voter preferences).
-- <strong>Quality Control:</strong> Manufacturers test sample means to ensure product consistency (e.g., checking bottle fill volumes).
-- <strong>Financial Models:</strong> Stock returns may not be normal, but portfolio averages often are, aiding risk predictions.</p>
+- <strong>Estimating Population Parameters:</strong> Sample means estimate the population mean (e.g., polling voter preferences).</p>
+<ul>
+<li>
+<p><strong>Quality Control:</strong> Manufacturers test sample means to ensure product consistency (e.g., checking bottle fill volumes).</p>
+</li>
+<li>
+<p><strong>Financial Models:</strong> Stock returns may not be normal, but portfolio averages often are, aiding risk predictions.</p>
+</li>
+</ul>
 <hr/>
 <h2 id="6-discussion">6. Discussion</h2>
 <ul>
-<li><strong>Results vs. Theory:</strong> The simulations confirm the CLT: sample means become normal as n increases, with variance shrinking as <span class="arithmatex">\(\sigma^2/n\)</span>.</li>
-<li><strong>Convergence Rate:</strong> Symmetric distributions (uniform) converge faster than skewed ones (exponential), matching theoretical expectations.</li>
-<li><strong>Implications:</strong> The CLT underpins statistical inference, making it possible to analyze data from any population with large enough samples.</li>
+<li>
+<p><strong>Results vs. Theory:</strong> The simulations confirm the CLT: sample means become normal as n increases, with variance shrinking as <span class="arithmatex">\(\sigma^2/n\)</span>.</p>
+</li>
+<li>
+<p><strong>Convergence Rate:</strong> Symmetric distributions (uniform) converge faster than skewed ones (exponential), matching theoretical expectations.</p>
+</li>
+<li>
+<p><strong>Implications:</strong> The CLT underpins statistical inference, making it possible to analyze data from any population with large enough samples.</p>
+</li>
 </ul>
 <hr/>
 </div>
