@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Lorentz Force Simulation: Visualizing Charged Particle Motion - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Lorentz Force Simulation: Visualizing Charged Particle Motion";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,8 +70,44 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Lorentz Force Simulation: Visualizing Charged Particle Motion</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-concept">Key Concept:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#applications">Applications:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-approach">Simulation Approach</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-methods">Numerical Methods:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#field-configurations">Field Configurations:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-implementation">Python Implementation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization-gallery">Visualization Gallery</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#case-1-uniform-magnetic-field-b-1tz">Case 1: Uniform Magnetic Field (B = 1Tẑ)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#case-2-crossed-fields-e-1kvmy-b-1tz">Case 2: Crossed Fields (E = 1kV/mŷ, B = 1Tẑ)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#case-3-combined-fields-e-b-1-units">Case 3: Combined Fields (E = B = 1 units)</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#key-parameters">Key Parameters</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-applications">Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extensions">Extensions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +199,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Lorentz Force Simulation: Visualizing Charged Particle Motion</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +207,159 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="lorentz-force-simulation-visualizing-charged-particle-motion">Lorentz Force Simulation: Visualizing Charged Particle Motion</h1>
+<hr/>
+<h2 id="introduction">Introduction</h2>
+<h3 id="key-concept">Key Concept:</h3>
+<p>The Lorentz force governs charged particle motion in electromagnetic fields:
+<span class="arithmatex">\(<span class="arithmatex">\(\mathbf{F} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B}\)</span>\)</span></p>
+<h3 id="applications">Applications:</h3>
+<ul>
+<li>Particle accelerators</li>
+<li>Mass spectrometers</li>
+<li>Plasma confinement devices</li>
+<li>Astrophysical phenomena</li>
+</ul>
+<hr/>
+<h2 id="simulation-approach">Simulation Approach</h2>
+<h3 id="numerical-methods">Numerical Methods:</h3>
+<ul>
+<li><strong>Runge-Kutta 4th order</strong> for accurate trajectory calculation</li>
+<li>Time-step integration of equations of motion:
+  <span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{v}}{dt} = \frac{q}{m}(\mathbf{E} + \mathbf{v} \times \mathbf{B})\)</span>\)</span>
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{d\mathbf{r}}{dt} = \mathbf{v}\)</span>\)</span></li>
+</ul>
+<h3 id="field-configurations">Field Configurations:</h3>
+<ol>
+<li>Uniform magnetic field (helical motion)</li>
+<li>Crossed E and B fields (drift motion)</li>
+<li>Combined fields (complex trajectories)</li>
+</ol>
+<hr/>
+<h2 id="python-implementation">Python Implementation</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Constants
+q = 1.6e-19  # Particle charge (C)
+m = 9.1e-31  # Particle mass (kg)
+
+def lorentz_force(r, v, t, E, B):
+    return q*(E + np.cross(v, B))/m
+
+def runge_kutta_4(r0, v0, t, E, B):
+    trajectory = np.zeros((len(t), 3))
+    r, v = r0.copy(), v0.copy()
+    for i in range(len(t)):
+        k1v = lorentz_force(r, v, t[i], E, B)
+        k1r = v
+        k2v = lorentz_force(r + 0.5*k1r*dt, v + 0.5*k1v*dt, t[i]+0.5*dt, E, B)
+        k2r = v + 0.5*k1v*dt
+        k3v = lorentz_force(r + 0.5*k2r*dt, v + 0.5*k2v*dt, t[i]+0.5*dt, E, B)
+        k3r = v + 0.5*k2v*dt
+        k4v = lorentz_force(r + k3r*dt, v + k3v*dt, t[i]+dt, E, B)
+        k4r = v + k3v*dt
+
+        v += (k1v + 2*k2v + 2*k3v + k4v)*dt/6
+        r += (k1r + 2*k2r + 2*k3r + k4r)*dt/6
+        trajectory[i] = r
+    return trajectory
+</code></pre>
+<hr/>
+<h2 id="visualization-gallery">Visualization Gallery</h2>
+<h3 id="case-1-uniform-magnetic-field-b-1tz">Case 1: Uniform Magnetic Field (B = 1Tẑ)</h3>
+<p><img alt="alt text" src="../Helical%20Trajectory.jpeg"/></p>
+<p><strong>Circular motion</strong> in xy-plane with <strong>constant drift</strong> along z-axis</p>
+<h3 id="case-2-crossed-fields-e-1kvmy-b-1tz">Case 2: Crossed Fields (E = 1kV/mŷ, B = 1Tẑ)</h3>
+<p><img alt="alt text" src="../drift.png"/>
+<strong>Curved trajectory</strong> showing <strong>E×B drift</strong> phenomenon</p>
+<h3 id="case-3-combined-fields-e-b-1-units">Case 3: Combined Fields (E = B = 1 units)</h3>
+<p><img alt="alt text" src="../Complex%20Trajectory.png"/>
+<strong>Spiral motion</strong> with <strong>varying radius</strong></p>
+<hr/>
+<h2 id="key-parameters">Key Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Effect on Trajectory</th>
+<th>Typical Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q/m ratio</td>
+<td>Determines curvature</td>
+<td>1.76×10¹¹ C/kg</td>
+</tr>
+<tr>
+<td>E field</td>
+<td>Causes acceleration</td>
+<td>1-1000 kV/m</td>
+</tr>
+<tr>
+<td>B field</td>
+<td>Induces rotation</td>
+<td>0.1-10 T</td>
+</tr>
+<tr>
+<td>v₀</td>
+<td>Initial conditions</td>
+<td>10³-10⁷ m/s</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="practical-applications">Practical Applications</h2>
+<ol>
+<li><strong>Cyclotrons</strong>:</li>
+<li>Particles spiral outward with increasing energy</li>
+<li>
+<p>RF fields synchronized with orbital frequency</p>
+</li>
+<li>
+<p><strong>Mass Spectrometers</strong>:</p>
+</li>
+<li>Different q/m ratios yield distinct paths</li>
+<li>
+<p>Enables precise mass measurements</p>
+</li>
+<li>
+<p><strong>Magnetic Confinement</strong>:</p>
+</li>
+<li>Plasma particles follow field lines</li>
+<li>Tokamak designs for fusion reactors</li>
+</ol>
+<hr/>
+<h2 id="extensions">Extensions</h2>
+<ol>
+<li><strong>Non-uniform fields</strong>:</li>
+<li>Gradient-B drift effects</li>
+<li>
+<p>Magnetic mirror configurations</p>
+</li>
+<li>
+<p><strong>Relativistic effects</strong>:</p>
+</li>
+<li>Significant at v &gt; 0.1c</li>
+<li>
+<p>Mass increase alters trajectories</p>
+</li>
+<li>
+<p><strong>Multi-particle systems</strong>:</p>
+</li>
+<li>Space charge effects</li>
+<li>Particle-particle interactions</li>
+</ol>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>Lorentz force simulations reveal <strong>complex 3D trajectories</strong></li>
+<li>Field configurations produce <strong>distinct motion patterns</strong></li>
+<li>Applications span <strong>accelerators to astrophysics</strong></li>
+<li>Python provides <strong>effective visualization tools</strong></li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
