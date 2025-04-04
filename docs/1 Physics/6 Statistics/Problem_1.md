@@ -16,14 +16,19 @@ Simulations make this concept tangible by letting us see the CLT unfold step-by-
 ### Step 1: Population Distributions
 We’ll simulate three population distributions:
 - **Uniform Distribution:** All values equally likely (e.g., a random number between 0 and 10).
+
 - **Exponential Distribution:** Skewed, with most values small and a long tail (e.g., time between events).
+
 - **Binomial Distribution:** Discrete, counting successes in fixed trials (e.g., heads in 10 coin flips).
 
 ### Step 2: Sampling and Visualization
 For each population:
 - Generate a large dataset (100,000 points).
+
 - Take random samples of sizes 5, 10, 30, and 50.
+
 - Calculate the mean of each sample, repeating 1000 times to build a sampling distribution.
+
 - Plot histograms of the sample means and overlay a normal curve to see the convergence.
 
 ---
@@ -143,25 +148,39 @@ for pop_name in populations:
 ![alt text](sampling_Binomial.png)
 ### Population Distributions
 - **Uniform:** Flat between 0 and 10 (mean ≈ 5, variance ≈ 8.33).
+
 - **Exponential:** Skewed right, most values near 0 (mean ≈ 1, variance ≈ 1).
+
 - **Binomial:** Discrete peaks around 5 (mean ≈ 5, variance ≈ 2.5).
 
 ### Sampling Distributions
 For each population and sample size (5, 10, 30, 50):
+
 - **Uniform:** Starts slightly bumpy at n=5, becomes a smooth bell curve by n=50.
+
 - **Exponential:** Highly skewed at n=5, approaches normality by n=30-50.
+
 - **Binomial:** Discrete at n=5, smooths into a normal shape by n=50.
+
 - **Normal Fit:** Black curve shows the expected normal distribution, matching the histograms as n increases.
 
 ### Parameter Exploration
 - **Shape Influence:**
+
   - **Uniform (symmetric):** Converges quickly to normality (even at n=5).
+
   - **Exponential (skewed):** Takes longer (n=30+) due to asymmetry.
+
   - **Binomial (discrete):** Converges steadily, smoother with larger n.
+
 - **Variance Impact:**
+
   - Sampling variance = $\frac{\text{population variance}}{\text{sample size}}$ (CLT prediction).
+
   - Uniform: High population variance (8.33), sampling variance drops from ~1.67 (n=5) to ~0.17 (n=50).
+
   - Exponential: Variance ≈ 1, sampling variance drops from ~0.20 (n=5) to ~0.02 (n=50).
+
   - Binomial: Variance ≈ 2.5, sampling variance drops from ~0.50 (n=5) to ~0.05 (n=50).
 
 ---
@@ -170,7 +189,9 @@ For each population and sample size (5, 10, 30, 50):
 
 The CLT is vital in real-world scenarios because it justifies using normal distribution tools:
 - **Estimating Population Parameters:** Sample means estimate the population mean (e.g., polling voter preferences).
+
 - **Quality Control:** Manufacturers test sample means to ensure product consistency (e.g., checking bottle fill volumes).
+
 - **Financial Models:** Stock returns may not be normal, but portfolio averages often are, aiding risk predictions.
 
 ---
@@ -178,7 +199,9 @@ The CLT is vital in real-world scenarios because it justifies using normal distr
 ## 6. Discussion
 
 - **Results vs. Theory:** The simulations confirm the CLT: sample means become normal as n increases, with variance shrinking as $\sigma^2/n$.
+
 - **Convergence Rate:** Symmetric distributions (uniform) converge faster than skewed ones (exponential), matching theoretical expectations.
+
 - **Implications:** The CLT underpins statistical inference, making it possible to analyze data from any population with large enough samples.
 
 ---
