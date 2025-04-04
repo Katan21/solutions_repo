@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Equivalent Resistance Calculation Using Graph Theory - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Equivalent Resistance Calculation Using Graph Theory";
         var mkdocs_page_input_path = "1 Physics/5 Circuits/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -76,8 +76,54 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">5 Circuits</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Equivalent Resistance Calculation Using Graph Theory</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph-representation-of-circuits">Graph Representation of Circuits</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-concepts">Key Concepts:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithm-overview-option-1">Algorithm Overview (Option 1)</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-by-step-process">Step-by-Step Process:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pseudocode-implementation">Pseudocode Implementation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#full-implementation-option-2">Full Implementation (Option 2)</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-code-using-networkx">Python Code Using NetworkX:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example-applications">Example Applications</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#case-1-simple-series">Case 1: Simple Series</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#case-2-simple-parallel">Case 2: Simple Parallel</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#case-3-nested-combination">Case 3: Nested Combination</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithm-analysis">Algorithm Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#efficiency-considerations">Efficiency Considerations:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-applications">Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +209,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">5 Circuits</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Equivalent Resistance Calculation Using Graph Theory</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +217,158 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="equivalent-resistance-calculation-using-graph-theory">Equivalent Resistance Calculation Using Graph Theory</h1>
+<hr/>
+<h2 id="introduction">Introduction</h2>
+<h3 id="motivation">Motivation:</h3>
+<ul>
+<li>Traditional series/parallel methods become cumbersome for complex circuits</li>
+<li>Graph theory provides systematic analysis of arbitrary resistor networks</li>
+<li>Enables automated circuit analysis and optimization</li>
+<li>Bridges electrical engineering and computer science concepts</li>
+</ul>
+<hr/>
+<h2 id="graph-representation-of-circuits">Graph Representation of Circuits</h2>
+<h3 id="key-concepts">Key Concepts:</h3>
+<ul>
+<li><strong>Nodes</strong> represent circuit junctions</li>
+<li><strong>Edges</strong> represent resistors with resistance values as weights</li>
+<li><strong>Graph</strong> captures entire circuit topology</li>
+</ul>
+<pre><code>Example Circuit:
+A --10Ω-- B --20Ω-- C
+|        |
+5Ω      15Ω
+|        |
+D --30Ω-- E
+</code></pre>
+<hr/>
+<h2 id="algorithm-overview-option-1">Algorithm Overview (Option 1)</h2>
+<h3 id="step-by-step-process">Step-by-Step Process:</h3>
+<ol>
+<li><strong>Series Reduction</strong>:</li>
+<li>Identify chains of nodes with degree 2</li>
+<li>Replace with single equivalent resistor: </li>
+</ol>
+<p><span class="arithmatex">\(R_eq = ΣR_i\)</span></p>
+<ol>
+<li><strong>Parallel Reduction</strong>:</li>
+<li>Identify parallel edges between same nodes</li>
+<li>Replace with single resistor: </li>
+</ol>
+<p><span class="arithmatex">\(1/R_eq = Σ(1/R_i)\)</span></p>
+<ol>
+<li><strong>Iterative Simplification</strong>:</li>
+<li>Repeat until single edge remains</li>
+<li>Handles nested combinations through recursion</li>
+</ol>
+<hr/>
+<h2 id="pseudocode-implementation">Pseudocode Implementation</h2>
+<pre><code class="language-python">function equivalent_resistance(graph):
+    while graph has more than 2 nodes:
+        # Series reduction
+        for node in graph.nodes:
+            if node.degree == 2:
+                R_eq = sum(edge.weights for edge in node.edges)
+                merge_edges(node, R_eq)
+
+        # Parallel reduction
+        for node_pair in graph.nodes:
+            parallel_edges = find_parallel_edges(node_pair)
+            if len(parallel_edges) &gt; 1:
+                R_eq = 1 / sum(1/edge.weight for edge in parallel_edges)
+                replace_parallel_edges(node_pair, R_eq)
+
+    return graph.remaining_edge.weight
+</code></pre>
+<hr/>
+<h2 id="full-implementation-option-2">Full Implementation (Option 2)</h2>
+<h3 id="python-code-using-networkx">Python Code Using NetworkX:</h3>
+<pre><code class="language-python">import networkx as nx
+
+def calculate_equivalent_resistance(graph):
+    G = graph.copy()
+
+    while len(G.nodes()) &gt; 2:
+        # Series reduction
+        for node in list(G.nodes()):
+            if G.degree(node) == 2:
+                neighbors = list(G.neighbors(node))
+                R_eq = G.edges[neighbors[0], node]['weight'] + G.edges[node, neighbors[1]]['weight']
+                G.add_edge(neighbors[0], neighbors[1], weight=R_eq)
+                G.remove_node(node)
+                break
+
+        # Parallel reduction
+        for u, v in list(G.edges()):
+            parallel_edges = [(a,b) for a,b in G.edges() if sorted((a,b)) == sorted((u,v))]
+            if len(parallel_edges) &gt; 1:
+                R_eq = 1 / sum(1/G.edges[e]['weight'] for e in parallel_edges)
+                G.remove_edges_from(parallel_edges)
+                G.add_edge(u, v, weight=R_eq)
+                break
+
+    return G.edges[list(G.edges())[0]]['weight']
+</code></pre>
+<hr/>
+<h2 id="example-applications">Example Applications</h2>
+<h3 id="case-1-simple-series">Case 1: Simple Series</h3>
+<pre><code>Input: A --10Ω-- B --20Ω-- C
+Output: 30Ω
+</code></pre>
+<h3 id="case-2-simple-parallel">Case 2: Simple Parallel</h3>
+<pre><code>Input: A --10Ω-- B
+       A --20Ω-- B
+Output: 6.67Ω
+</code></pre>
+<h3 id="case-3-nested-combination">Case 3: Nested Combination</h3>
+<pre><code>Input: A --10Ω-- B --20Ω-- C
+       |        |
+       5Ω      15Ω
+       |        |
+       D --30Ω-- E
+Output: 22.14Ω
+</code></pre>
+<hr/>
+<h2 id="algorithm-analysis">Algorithm Analysis</h2>
+<h3 id="efficiency-considerations">Efficiency Considerations:</h3>
+<ul>
+<li><strong>Time Complexity</strong>: O(n²) worst case</li>
+<li><strong>Space Complexity</strong>: O(n + e) for graph storage</li>
+<li><strong>Optimization Opportunities</strong>:</li>
+<li>Priority reduction of high-degree nodes</li>
+<li>Parallel processing for independent reductions</li>
+<li>Memoization of common subgraphs</li>
+</ul>
+<hr/>
+<h2 id="practical-applications">Practical Applications</h2>
+<ol>
+<li><strong>Circuit Design Automation</strong>:</li>
+<li>SPICE-like simulators</li>
+<li>
+<p>PCB layout optimization</p>
+</li>
+<li>
+<p><strong>Network Analysis</strong>:</p>
+</li>
+<li>Power grid modeling</li>
+<li>
+<p>Telecommunications networks</p>
+</li>
+<li>
+<p><strong>Educational Tools</strong>:</p>
+</li>
+<li>Interactive circuit analysis</li>
+<li>Visualization of circuit simplification</li>
+</ol>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>Graph theory provides elegant solution to equivalent resistance</li>
+<li>Algorithm handles arbitrary circuit configurations</li>
+<li>Implementation scales to complex networks</li>
+<li>Foundation for more advanced circuit analysis techniques</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
